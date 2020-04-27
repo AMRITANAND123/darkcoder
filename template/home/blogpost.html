@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="inner-heading">
+                    <ul class="breadcrumb">
+                        <li><a href="index.html">Home</a> <i class="icon-angle-right"></i></li>
+                        <li class="active">Post</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+
+            <div class="span8">
+
+                <article class="single">
+                    <div class="row">
+                        {% for p in  post %}
+                        <div class="span8">
+                            <div class="post-image">
+                                <div class="post-heading">
+                                    <h3><a href="#">{{p.title}}</a></h3>
+                                </div>
+                                <img src="/media/{{p.img}}" alt="" />
+                            </div>
+                            <div class="meta-post">
+                                <ul>
+                                    <li><i class="icon-file"></i></li>
+                                    <li>By <a href="#" class="author">{{p.postedBy}}</a></li>
+                                    <li>On <a href="#" class="date">{{p.time}}</a></li>
+
+                                </ul>
+                            </div>
+                            <p>
+                                {{p.body|safe}}..
+                            </p>
+
+
+
+
+
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                </article>
+
+              
+
+
+
+
+                <div class="marginbot30"></div>
+                <h4>Leave your comment</h4>
+
+                <form id="commentform" action="#" method="post" name="comment-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="span4">
+                            <input type="text" placeholder="* Enter your full name" />
+                        </div>
+                        <div class="span4">
+                            <input type="text" placeholder="* Enter your email address" />
+                        </div>
+                        <div class="span8 margintop10">
+                            <input type="text" placeholder="Enter your website" />
+                        </div>
+                        <div class="span8 margintop10">
+                            <p>
+                                <textarea rows="12" class="input-block-level"
+                                    placeholder="*Your comment here"></textarea>
+                            </p>
+                            <p>
+                                <button class="btn btn-theme btn-medium margintop10" type="submit" disabled>Submit
+                                    comment</button>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+
+
+
+
+        <div class="span4">
+
+            <aside class="right-sidebar">
+
+
+
+
+                <div class="widget">
+                    <div class="tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#one" data-toggle="tab"><i class="icon-star"></i> Popular</a>
+                            </li>
+                            <li><a href="#two" data-toggle="tab">Recent</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="one">
+                                <ul class="popular">
+
+                                    {% for p in popular  %}
+
+                                    <li>
+                                        <img src="/media/{{p.img}}" width="30%" alt="" class="thumbnail pull-left" />
+                                        <p><a href="/post/{{p.slug}}">Dorlorem ipsum et mea dolor sit amet</a></p>
+                                        <span>20 June, 2013</span>
+                                    </li>
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="two">
+                                <ul class="popular">
+
+                                    {% for p in latest  %}
+
+                                    <li>
+                                        <img src="/media/{{p.img}}" width="30%" alt="" class="thumbnail pull-left" />
+                                        <p><a href="/post/{{p.slug}}">Dorlorem ipsum et mea dolor sit amet</a></p>
+                                        <span>20 June, 2013</span>
+                                    </li>
+                                    {% endfor %}
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </aside>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+{% endblock body %}
